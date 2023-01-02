@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { auth } from "../../context/auth";
+import { Auth } from "../../context/auth";
 import { url } from "../../constants/url";
 
 const Login = () => {
@@ -9,7 +9,8 @@ const Login = () => {
   const passwordRef = useRef("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const authUser = useContext(auth);
+
+  const [authUser, setAuthUser] = useContext(Auth);
 
   const saveDataToStorage = (response) => {
     localStorage.setItem(
@@ -22,13 +23,15 @@ const Login = () => {
   };
 
   const authenticate = (response) => {
-    authUser.user = response.data.userDataObject;
-    authUser.token = response.data.token;
-    authUser.isLoggedIn = true;
+    setAuthUser({
+      user: response.data.userDataObject,
+      token: response.data.token,
+      isLoggedIn: true,
+    });
   };
 
   const navigateTodo = () => {
-    navigate("/todos", { replace: "true" });
+    navigate("/todos", { replace: true });
   };
 
   const loginHandler = async (event) => {
@@ -49,6 +52,8 @@ const Login = () => {
         }, 5000);
       }
       if (response.data.status === "success") {
+        saveDataToStorage(response);
+        authenticate(response);
         navigateTodo();
       }
     } catch (error) {

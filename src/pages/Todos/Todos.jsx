@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { Fragment } from "react";
+import AddTodo from "../../components/UI/AddTodo/AddTodo";
 
 const Todos = () => {
   return (
-    <div>Todos</div>
-  )
-}
+    <Fragment>
+      <div>
+        <AddTodo />
+      </div>
+    </Fragment>
+  );
+};
 
-export default Todos
+export default Todos;

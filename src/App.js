@@ -1,45 +1,42 @@
-import React, { useEffect, createContext, useContext } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, {
+  Fragment,
+  useEffect,
+  createContext,
+  useContext,
+  useState,
+} from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Todos from "./pages/Todos/Todos";
 import Home from "./pages/Home/Home";
-import { auth } from "./context/auth";
+import { Auth } from "./context/auth";
 
 import "./App.css";
 
 function App() {
-  const AuthContext = createContext();
-  const authenticated = useContext(auth);
+  const authenticated = useContext(Auth);
 
-  // useEffect(() => {
-  //   setAccessToken(() => sessionStorage.getItem("accessToken"));
-  //   log(accessToken);
-  // }, [accessToken]);
+  const [authUser, setAuthUser] = useState(authenticated);
 
-  const isLoggedIn = authenticated.isLoggedIn;
+  useEffect(() => {
+    const tryLogin = () => {
+      const userData = localStorage.getItem("userData");
+      if (userData) {
+        const parsedData = JSON.parse(userData);
+        setAuthUser({
+          user: parsedData.user,
+          token: parsedData.token,
+          isLoggedIn: true,
+        });
+      }
+    };
+    tryLogin();
+  }, []);
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-  ]);
-
-  const authRouter = createBrowserRouter([
-    {
-      path: "/todos",
-      element: <Todos />,
-    },
-  ]);
+  const isLoggedIn = authUser.isLoggedIn;
+  console.log("token");
+  console.log(authUser.token);
 
   useEffect(() => {
     document.title = "Auth";
@@ -47,10 +44,38 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={authenticated}>
-        {!isLoggedIn && <RouterProvider router={router} />}
-        {isLoggedIn && <RouterProvider router={authRouter} />}
-      </AuthContext.Provider>
+      <Auth.Provider value={[authUser, setAuthUser]}>
+        <BrowserRouter>
+          {!isLoggedIn && (
+            <Routes>
+              <Fragment>
+                <Route path="/home" element={<Home />} />
+                <Route path="register" element={<Register />} />
+                <Route path="login" element={<Login />} />
+                <Route
+                  path="signup"
+                  element={<Navigate to="/register" replace />}
+                />
+                <Route
+                  path="signin"
+                  element={<Navigate to="/login" replace />}
+                />
+                <Route path="*" element={<Navigate to="/home" replace />} />
+              </Fragment>
+            </Routes>
+          )}
+
+          {isLoggedIn && (
+            <Routes>
+              <Fragment>
+                {/* <Route path="/" element={<Todos />} /> */}
+                <Route path="/todos" element={<Todos />} />
+                <Route path="*" element={<Navigate to="/todos" replace />} />
+              </Fragment>
+            </Routes>
+          )}
+        </BrowserRouter>
+      </Auth.Provider>
     </div>
   );
 }
