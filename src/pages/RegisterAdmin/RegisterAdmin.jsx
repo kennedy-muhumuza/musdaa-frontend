@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { url } from "../../constants/url";
-import styles from "./Register.module.scss";
-import { signup } from "../../store/actions/auth";
+import styles from "./RegisterAdmin.module.scss";
+import { registerAdmin } from "../../store/actions/auth";
 import { IconContext } from "react-icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { disableEnableButton } from "../../utils/disableEnableButton";
@@ -16,14 +16,14 @@ import countryList from "react-select-country-list";
 
 const Register = () => {
   const options = useMemo(() => countryList().getData(), []);
-  // let navigate = useNavigate();
+
   let navigate = useNavigate();
 
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
+  const [adminToken, setAdminToken] = useState("");
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
   const [telNumber, setTelNumber] = useState("");
@@ -41,6 +41,9 @@ const Register = () => {
 
   const handleSelectedCountryChange = (event) => {
     setCountry(event.target.value);
+  };
+  const handleAdminTokenChange = (event) => {
+    setAdminToken(event.target.value);
   };
 
   const handleFirstNameChange = (event) => {
@@ -84,35 +87,28 @@ const Register = () => {
 
   const registerHandler = async (event) => {
     if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password ||
-      !country ||
-      !telNumber
+      (!adminToken,
+      !firstName || !lastName || !email || !password || !country || !telNumber)
     )
       return;
     try {
       setIsLoading(true);
       disableEnableButton("signup-button", true);
       await dispatch(
-        signup(firstName, lastName, email, country, telNumber, password, "user")
+        registerAdmin(
+          adminToken,
+          firstName,
+          lastName,
+          email,
+          country,
+          telNumber,
+          password,
+          "admin"
+        )
       );
       navigateLogin();
       setIsLoading(false);
       disableEnableButton("signup-button", false);
-      // setOnSuccess(true);
-      // const response = await axios.post(`${url}/register`, {
-      //   firstName: firstName,
-      //   lastName: lastName,
-      //   email: email,
-      //   password: password,
-      // });
-      // console.log(response);
-      // if (response.data.status === "success") {
-      //   setOnSuccess(true);
-      //   navigateLogin();
-      // }
     } catch (error) {
       setIsLoading(false);
       disableEnableButton("signup-button", false);
@@ -121,6 +117,7 @@ const Register = () => {
       console.log(error.message);
     }
   };
+
   const arePasswordsMatching = () => {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
@@ -173,13 +170,25 @@ const Register = () => {
         <div className={styles["register"]}>
           <h4>Create an account here</h4>
           <fieldset>
-            <legend>Account setup</legend>
+            <legend>Admin Account setup</legend>
 
             <form
               onSubmit={(event) => {
                 validPasswordOnSubmit(event);
               }}
             >
+              <div>
+                <label>Admin Token: &nbsp;</label>
+                <input
+                  value={adminToken}
+                  type="text"
+                  placeholder="Enter Admin Token"
+                  onChange={(event) => {
+                    handleAdminTokenChange(event);
+                  }}
+                  required
+                />
+              </div>
               <div>
                 <label>First Name: &nbsp;</label>
                 <input
@@ -220,7 +229,7 @@ const Register = () => {
                 />
               </div>
               {isPasswordError && (
-                // TODO: display this message in the modal
+                //Display this message in the modal
                 <span className={styles["password-error"]}>
                   {passwordValidationMsg}
                 </span>

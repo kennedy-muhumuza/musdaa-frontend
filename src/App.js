@@ -8,74 +8,88 @@ import React, {
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
-import Todos from "./pages/Todos/Todos";
+import LoggedUserPage from "./pages/loggedUserPage/LoggedUserPage";
 import Home from "./pages/Home/Home";
 import { Auth } from "./context/auth";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "./components/Layouts/header/Header";
+import AdminDashBoard from "./pages/AdminDashBoard/AdminDashBoard";
+import { authenticate } from "./store/actions/auth";
+import RegisterAdmin from "./pages/RegisterAdmin/RegisterAdmin";
+import AdminHomePage from "./pages/AdminPage/AdminPage";
 
-import "./App.css";
+import "./App.scss";
+import About from "./pages/about/About";
 
 function App() {
-  const authenticated = useContext(Auth);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const [authUser, setAuthUser] = useState(authenticated);
+  const userRole = useSelector(
+    (state) => state.auth.user && state.auth.user.userRole
+  );
 
-  useEffect(() => {
-    const tryLogin = () => {
-      const userData = localStorage.getItem("userData");
-      if (userData) {
-        const parsedData = JSON.parse(userData);
-        setAuthUser({
-          user: parsedData.user,
-          token: parsedData.token,
-          isLoggedIn: true,
-        });
-      }
-    };
-    tryLogin();
-  }, []);
+  const userDataFromStorage = JSON.parse(localStorage.getItem("userData"));
+  const navigationTypeReload =
+    performance.getEntriesByType("navigation")[0].type === "reload";
 
-  const isLoggedIn = authUser.isLoggedIn;
-  console.log("token");
-  console.log(authUser.token);
-
-  useEffect(() => {
-    document.title = "Auth";
-  }, []);
+  // update the redux store on page reload
+  if (navigationTypeReload && userDataFromStorage) {
+    const { user, token } = userDataFromStorage;
+    dispatch(authenticate(user, token));
+  }
 
   return (
     <div className="App">
-      <Auth.Provider value={[authUser, setAuthUser]}>
-        <BrowserRouter>
-          {!isLoggedIn && (
-            <Routes>
-              <Fragment>
-                <Route path="/home" element={<Home />} />
-                <Route path="register" element={<Register />} />
-                <Route path="login" element={<Login />} />
-                <Route
-                  path="signup"
-                  element={<Navigate to="/register" replace />}
-                />
-                <Route
-                  path="signin"
-                  element={<Navigate to="/login" replace />}
-                />
-                <Route path="*" element={<Navigate to="/home" replace />} />
-              </Fragment>
-            </Routes>
-          )}
+      <BrowserRouter>
+        {/* ---------------------ACCESSIBLE ROUTES WHEN NOT LOGGED IN------------------------------- */}
+        {!isLoggedIn && (
+          <Routes>
+            <Fragment>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route
+                path="register"
+                element={
+                  <div>
+                    <Register />
+                  </div>
+                }
+              />
+              <Route path="login" element={<Login />} />
+              <Route path="about" element={<About />} />
+              <Route
+                path="signup"
+                element={<Navigate to="/register" replace />}
+              />
+              <Route path="signin" element={<Navigate to="/login" replace />} />
+              <Route path="*" element={<Navigate to="/home" replace />} />
+              <Route path="register-admin" element={<RegisterAdmin />} />
+            </Fragment>
+          </Routes>
+        )}
 
-          {isLoggedIn && (
-            <Routes>
-              <Fragment>
-                {/* <Route path="/" element={<Todos />} /> */}
-                <Route path="/todos" element={<Todos />} />
-                <Route path="*" element={<Navigate to="/todos" replace />} />
-              </Fragment>
-            </Routes>
-          )}
-        </BrowserRouter>
-      </Auth.Provider>
+        {/* -----------------ACCESSIBLE ROUTES WHEN LOGGED IN---------------------------- */}
+        {isLoggedIn && (
+          <Routes>
+            <Fragment>
+              <Route path="/resources" element={<LoggedUserPage />} />
+              <Route path="*" element={<Navigate to="/resources" replace />} />
+
+              {userRole === "admin" && (
+                <>
+                  <Route path="/" element={<AdminHomePage />} />
+                  <Route path="/admin-resources" element={<AdminHomePage />} />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/admin-resources" replace />}
+                  />
+                </>
+              )}
+            </Fragment>
+          </Routes>
+        )}
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #1971c2;
+
+  --color-primary-light: #4dabf7;
+  --color-primary-dark: #1864ab;
+  --color-secondary: #2f9e44;
+  --color-secondary-light: #51cf66;
+  --color-secondary-dark: #2b8a3e;
+
+  --color-grey-light-1: #ced4da;
+  --color-grey-light-2: #dee2e6;
+  --color-grey-light-3: #e9ecef;
+  --color-grey-light-4: #f1f3f5;
+
+  --color-grey-dark-1: #868e96;
+  --color-grey-dark-2: #495057;
+  --color-grey-dark-3: #343a40;
+  --color-grey-dark-4: #212529;
+
+  --shadow-dark: 0rem 0rem 0.2rem 0.2rem hsla(0, 0%, 0%, 0.15);
+  --shadow-light: 0.2rem 0.4rem 0.6rem 0.2rem hsla(0, 0%, 0%, 0.08);
+  --about-page-height: 25rem;
+  --home-page-container-height: 30rem;
+}

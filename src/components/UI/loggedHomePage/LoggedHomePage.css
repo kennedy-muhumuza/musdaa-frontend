@@ -1,0 +1,38 @@
+.logged-home-page-container {
+  /* background-color: red; */
+  padding: 3rem 3rem;
+}
+.welcome-msg {
+  background-color: var(--color-grey-light-2);
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+  border-left: solid var(--color-secondary-dark);
+  box-shadow: var(--shadow-light);
+}
+.access-msg {
+  margin-top: 3rem;
+}
+
+/* ------------------------------------LOGOUT------------------------------------ */
+.logout {
+  width: 5.2em;
+  display: inline-block;
+  background-color: var(--color-grey-light-1);
+  border: 1px solid var(--color-grey-light-1);
+  border-radius: 3px;
+  margin-top: 1rem;
+  right: -1.65em;
+  padding: 0.2em 0em;
+}
+.logout__group {
+  color: hsl(0, 100%, 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.logout__group__text {
+  margin-left: 0.4em;
+  font-size: 0.8em;
+  font-weight: bold;
+}

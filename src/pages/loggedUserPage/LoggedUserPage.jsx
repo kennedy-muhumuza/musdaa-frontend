@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
-import AddTodo from "../../components/UI/AddTodo/AddTodo";
+import LoggedHomePage from "../../components/UI/loggedHomePage/LoggedHomePage";
+import styles from "./LoggedUserPage.module.scss";
 
 const Todos = () => {
   return (
     <Fragment>
       <div>
-        <AddTodo />
+        <LoggedHomePage />
       </div>
     </Fragment>
   );
