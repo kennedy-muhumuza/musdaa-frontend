@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import styles from "./Header.module.scss";
 import LoggedInAs from "../../UI/loggedInAs/LoggedInAs";
 
+// My header component
 const Header = ({ title }) => {
   return (
     <Fragment>
