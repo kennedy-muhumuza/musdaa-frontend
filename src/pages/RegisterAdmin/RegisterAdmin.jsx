@@ -8,7 +8,7 @@ import { registerAdmin } from "../../store/actions/auth";
 import { IconContext } from "react-icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { disableEnableButton } from "../../utils/disableEnableButton";
-import Modal from "../../components/UI/Modal/Modal";
+import Modal from "../../components/UI/modal/Modal";
 import { FadeLoader } from "react-spinners";
 
 import Select from "react-select";
@@ -168,9 +168,11 @@ const Register = () => {
           </div>
         )}
         <div className={styles["register"]}>
-          <h4>Create an account here</h4>
+          {/* <h4>Create an account here</h4> */}
           <fieldset>
-            <legend>Admin Account setup</legend>
+            <legend className={styles["admin_account_setup"]}>
+              Admin Account setup
+            </legend>
 
             <form
               onSubmit={(event) => {
@@ -182,6 +184,7 @@ const Register = () => {
                 <input
                   value={adminToken}
                   type="text"
+                  className={styles["input_field"]}
                   placeholder="Enter Admin Token"
                   onChange={(event) => {
                     handleAdminTokenChange(event);
@@ -195,6 +198,7 @@ const Register = () => {
                   // ref={firstNameRef}
                   value={firstName}
                   type="text"
+                  className={styles["input_field"]}
                   placeholder="First Name"
                   onChange={(event) => {
                     handleFirstNameChange(event);
@@ -205,6 +209,7 @@ const Register = () => {
               <div>
                 <label>Last Name: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   // ref={lastNameRef}
                   value={lastName}
                   type="text"
@@ -218,6 +223,7 @@ const Register = () => {
               <div>
                 <label>Email: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   // ref={emailRef}
                   value={email}
                   type="email"
@@ -238,6 +244,7 @@ const Register = () => {
               <div className={styles["signup__form__input__container"]}>
                 <label>Password: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   // ref={passwordRef}
                   value={password}
                   type={showPassword ? "text" : "password"}
@@ -277,9 +284,10 @@ const Register = () => {
               <div className={styles["signup__form__input__container"]}>
                 <label>Confirm password: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   type={showPassword ? "text" : "password"}
                   placeholder="Confirm Password"
-                  className={styles["signup__form__input"]}
+                  // className={styles["signup__form__input"]}
                   id="confirm-password"
                   value={confirmPassword}
                   onChange={(event) => {
@@ -316,6 +324,7 @@ const Register = () => {
               <div>
                 <label>Country: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   // ref={countryRef}
                   value={country}
                   type="text"
@@ -341,6 +350,7 @@ const Register = () => {
               <div>
                 <label>Telephone Number: &nbsp;</label>
                 <input
+                  className={styles["input_field"]}
                   // ref={numberRef}
                   value={telNumber}
                   type="text"

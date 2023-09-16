@@ -19,55 +19,20 @@ footer {
   font-style: italic;
 }
 /* ---------------------------------------HEADER SECTION WITH THE NAVIGATION LINKS------------------- */
-.header-container {
-  background-color: var(--color-primary);
 
-  height: var(--home-page-container-height);
-  justify-content: center;
-}
-.logo-link-container {
+.body_container {
   display: flex;
-  gap: 5rem;
-  padding-top: 2.5rem;
-  padding-left: 15rem;
+  // background-color: red;
+}
+.temporary_links {
+  color: var(--color-secondary-dark);
 }
 
-.content-slider-container {
-  /* background-color: red; */
-  /* height: auto; */
-  /* margin-left: 15rem; */
-  /* padding-left: 15rem; */
-  /* new */
-  /* width: 90%;
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-  margin-bottom: 15rem; */
-}
-.empty-div {
-  /* background-color: blue; */
-  width: 20%;
-  height: 5rem;
-}
-.slide-content-container {
-  display: flex;
-}
-.swiper-slide-container {
-  position: relative;
-  margin-top: 4rem;
-  background-color: var(--color-grey-light-4);
-  padding-left: 5rem;
-  height: 12rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-}
 .home-link {
   background-color: var(--color-grey-dark-4);
-  // padding: 0.5rem 1.1rem;
+
   color: var(--color-grey-light-3);
-  // height: fit-content;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,63 +70,16 @@ footer {
   transition: 0.01s;
 }
 .header-link-container {
-  background-color: red;
+  // background-color: red;
   display: flex;
-  gap: 0;
+  // gap: 0;
 }
 .header-link-container {
   // display: flex;
   // gap: 0rem;
 }
 /*---------------------------------- ABOUT PAGE SECTION -----------------------------------------*/
-.about-page-container {
-  background-color: var(--color-grey-light-1);
-  height: var(--about-page-height);
-  display: flex;
-  justify-content: center;
-}
-.about-page-logo-content-wrapper {
-  padding: 3rem;
-  position: absolute;
-  height: var(--about-page-height);
-  display: flex;
-  gap: 1rem;
-  width: 70%;
-}
 
-.about-content {
-  padding: 0 5rem;
-}
-.about-headings {
-  position: relative;
-}
-.about-paragragh {
-  width: 80%;
-  margin-top: 2rem;
-  position: relative;
-}
-.about-btn {
-  margin-top: 2rem;
-  position: relative;
-  padding: 0.5rem;
-  width: 15rem;
-  color: var(--color-grey-light-3);
-  border: 0;
-  border-radius: 1rem;
-  background-color: var(--color-grey-dark-4);
-  display: flex;
-  gap: 0.2rem;
-  justify-content: center;
-  transition: 0.2s;
-}
-.about-btn:hover {
-  background-color: var(--color-grey-dark-3);
-}
-.about-page-logo-container {
-  width: 100%;
-  height: 15rem;
-  background-color: var(--color-secondary);
-}
 /* ----------------------------------TESTIMONIAL SECTION -----------------------------------------*/
 .testimonials-container {
   background-color: var(--color-primary-light);
@@ -316,4 +234,28 @@ footer {
   background-color: var(--color-grey-dark-3);
   padding: 2.5rem 3rem;
   border-radius: 50%;
+}
+.links_container {
+  width: 15rem;
+  margin-left: 25rem;
+  margin-top: 8rem;
+  padding: 2rem;
+  background-color: var(--color-grey-light-4);
+  box-shadow: var(--shadow-lg);
+  box-sizing: var(--shadow-dark);
+}
+// ----------------------------MEDIA QUERIES------------------------------------
+// ----------------------------MEDIA QUERIES------------------------------------
+// ----------------------------MEDIA QUERIES------------------------------------
+// ----------------------------MEDIA QUERIES------------------------------------
+// ----------------------------MEDIA QUERIES------------------------------------
+@media screen and (600px <= width <= 1074px) {
+  .body_container {
+    display: flex;
+  }
+}
+
+@media screen and (420px < width <= 600px) {
+}
+@media screen and (width <= 420px) {
 }

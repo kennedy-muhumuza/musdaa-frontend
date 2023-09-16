@@ -1,3 +1,41 @@
+.login__container {
+  width: 20rem;
+  height: auto;
+}
+.login__form__input {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all;
+  outline: none;
+  padding: 8px;
+  background-color: #f3f4f6;
+  font-size: 14px;
+}
+.eye__icon__container {
+  position: absolute;
+  top: 11.5rem;
+  right: 7.5rem;
+}
+.link {
+  color: var(--color-secondary);
+}
+.forgot__password__container {
+  color: var(--color-secondary);
+}
+.login__form__heading {
+  // background-color: red;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-grey-light-1);
+}
+.login__form__btn {
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-grey-light-4);
+}
 // .login-container {
 //   display: flex;
 //   justify-content: center;
@@ -25,150 +63,150 @@
 // .email-input {
 //   width: 17rem;
 // }
+// -----------------------------OLD UP-------------------------
+// .login__container {
+//   // display: grid;
+//   // place-items: center;
+//   // margin-bottom: 2em;
+//   // min-height: 100vh;
+//   // position: relative;
 
-.login__container {
-  display: grid;
-  place-items: center;
-  margin-bottom: 2em;
-  min-height: 100vh;
-  position: relative;
+//   &__header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     background-color: var(--color-grey-light-2);
+//     box-shadow: var(--shadow-dark);
+//     position: fixed;
+//     top: 0px;
+//     width: 100%;
+//     height: 4em;
+//     padding: 0 3em;
+//     margin-bottom: 5em;
+//     @media screen and (max-width: 400px) {
+//       padding: 0 1em;
+//     }
+//     &--logo {
+//       color: var(--color-grey-dark-2);
+//       font-weight: bold;
+//     }
+//     &--links {
+//       &-home {
+//         text-decoration: none;
+//         color: var(--color-grey-dark-2);
+//         padding: 0.2em 0.4em 0.3em 0.4em;
+//         border-radius: 3px;
+//       }
+//       &-home:hover,
+//       &-home:focus {
+//         transition: 0.2s;
+//         border: 2px solid var(--color-primary-light);
+//         border: 2px solid var(--color-primary);
+//       }
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--color-grey-light-2);
-    box-shadow: var(--shadow-dark);
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 4em;
-    padding: 0 3em;
-    margin-bottom: 5em;
-    @media screen and (max-width: 400px) {
-      padding: 0 1em;
-    }
-    &--logo {
-      color: var(--color-grey-dark-2);
-      font-weight: bold;
-    }
-    &--links {
-      &-home {
-        text-decoration: none;
-        color: var(--color-grey-dark-2);
-        padding: 0.2em 0.4em 0.3em 0.4em;
-        border-radius: 3px;
-      }
-      &-home:hover,
-      &-home:focus {
-        transition: 0.2s;
-        border: 2px solid var(--color-primary-light);
-        border: 2px solid var(--color-primary);
-      }
+//       &-signup {
+//         text-decoration: none;
+//         color: var(--color-grey-dark-2);
+//         background-color: var(--color-primary);
+//         border: 2px solid var(--color-primary);
+//         color: var(--color-grey-light-1);
+//         padding: 0.2em 0.4em 0.3em 0.4em;
+//         border-radius: 3px;
+//         margin-left: 1.5em;
+//       }
+//       &-signup:hover,
+//       &-signup:focus {
+//         transition: 0.2s;
+//         background-color: var(--color-primary-light);
+//         border: 2px solid var(--color-primary-light);
+//       }
+//     }
+//   }
+// }
 
-      &-signup {
-        text-decoration: none;
-        color: var(--color-grey-dark-2);
-        background-color: var(--color-primary);
-        border: 2px solid var(--color-primary);
-        color: var(--color-grey-light-1);
-        padding: 0.2em 0.4em 0.3em 0.4em;
-        border-radius: 3px;
-        margin-left: 1.5em;
-      }
-      &-signup:hover,
-      &-signup:focus {
-        transition: 0.2s;
-        background-color: var(--color-primary-light);
-        border: 2px solid var(--color-primary-light);
-      }
-    }
-  }
-}
+// .fade__loader__container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   color: var(--color-primary);
+//   background-color: var(--color-grey-light-2);
+//   box-shadow: var(--shadow-dark);
+//   border-radius: 5px;
+//   padding: 0.2em 1em;
+//   position: relative;
+//   top: 6em;
+// }
 
-.fade__loader__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--color-primary);
-  background-color: var(--color-grey-light-2);
-  box-shadow: var(--shadow-dark);
-  border-radius: 5px;
-  padding: 0.2em 1em;
-  position: relative;
-  top: 6em;
-}
+// .login__form {
+//   background-color: var(--color-grey-light-1);
+//   border: 1px solid var(--color-grey-light-3);
+//   border-radius: 5px;
+//   box-shadow: var(--shadow-dark);
+//   padding: 1.5em;
+//   // width: 100%;
+// }
 
-.login__form {
-  background-color: var(--color-grey-light-1);
-  border: 1px solid var(--color-grey-light-3);
-  border-radius: 5px;
-  box-shadow: var(--shadow-dark);
-  padding: 1.5em;
-  // width: 100%;
-}
+// .login__form__heading {
+//   color: var(--color-grey-dark-2);
+//   font-weight: bold;
+//   margin-bottom: 0.5em;
+// }
 
-.login__form__heading {
-  color: var(--color-grey-dark-2);
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
+// .login__form__input__container {
+//   position: relative;
+//   margin: 0.5em 0em;
+//   .login__form__input {
+//     width: 100%;
+//     padding: 0.5em;
+//     border: 1.5px solid var(--color-primary-light);
+//     border-radius: 3px;
+//     outline: none;
+//   }
+//   .login__form__input:focus {
+//     border: 2px solid var(--color-primary-light);
+//   }
+//   .eye__icon__container {
+//     position: absolute;
+//     top: 0.4em;
+//     right: 0.5em;
+//   }
+// }
 
-.login__form__input__container {
-  position: relative;
-  margin: 0.5em 0em;
-  .login__form__input {
-    width: 100%;
-    padding: 0.5em;
-    border: 1.5px solid var(--color-primary-light);
-    border-radius: 3px;
-    outline: none;
-  }
-  .login__form__input:focus {
-    border: 2px solid var(--color-primary-light);
-  }
-  .eye__icon__container {
-    position: absolute;
-    top: 0.4em;
-    right: 0.5em;
-  }
-}
+// .login__form__btn {
+//   width: 100%;
+//   color: var(--color-grey-light-1);
+//   background-color: var(--color-primary);
+//   border: 1px solid var(--color-primary);
+//   border-radius: 3px;
+//   padding: 0.6em 0.5em;
+//   margin: 0.5em 0;
+//   outline: none;
+// }
 
-.login__form__btn {
-  width: 100%;
-  color: var(--color-grey-light-1);
-  background-color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: 3px;
-  padding: 0.6em 0.5em;
-  margin: 0.5em 0;
-  outline: none;
-}
+// .login__form__btn:hover,
+// .login__form__btn:focus {
+//   transition: 0.2s;
+//   background-color: var(--color-primary-light);
+//   border: 1px solid var(--color-primary-light);
+// }
 
-.login__form__btn:hover,
-.login__form__btn:focus {
-  transition: 0.2s;
-  background-color: var(--color-primary-light);
-  border: 1px solid var(--color-primary-light);
-}
+// .login__form__btn:disabled {
+//   background-color: var(--color-primary-light);
+//   border: 1px solid var(--color-primary-light);
+//   opacity: 0.6;
+// }
 
-.login__form__btn:disabled {
-  background-color: var(--color-primary-light);
-  border: 1px solid var(--color-primary-light);
-  opacity: 0.6;
-}
+// .forgot__password__container {
+//   font-size: 0.96em;
+//   color: var(--color-secondary-light);
+//   cursor: pointer;
+// }
 
-.forgot__password__container {
-  font-size: 0.96em;
-  color: var(--color-secondary-light);
-  cursor: pointer;
-}
-
-.dont__have__account {
-  font-size: 0.96em;
-  .link {
-    text-decoration: none;
-    color: hsl(240, 100%, 50%);
-    color: var(--color-secondary-light);
-  }
-}
+// .dont__have__account {
+//   font-size: 0.96em;
+//   .link {
+//     text-decoration: none;
+//     color: hsl(240, 100%, 50%);
+//     color: var(--color-secondary-light);
+//   }
+// }

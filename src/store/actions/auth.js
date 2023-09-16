@@ -4,9 +4,17 @@ import { authActions } from "../reducers/auth";
 import { url } from "../../constants/url";
 // import { useNavigate } from "react-router-dom";
 
-export const authenticate = (user, token) => {
+export const authenticate = (user, token, isLoggedIn, message, status) => {
   return async (dispatch) => {
-    await dispatch(authActions.authenticate({ token: token, user: user }));
+    await dispatch(
+      authActions.authenticate({
+        token: token,
+        isLoggedIn: isLoggedIn,
+        user: user,
+        message: message,
+        status: status,
+      })
+    );
   };
 };
 
@@ -17,12 +25,14 @@ export const logOut = () => {
   };
 };
 
-const saveDataToStorage = (user, token) => {
+const saveDataToStorage = (user, token, message, status) => {
   localStorage.setItem(
     "userData",
     JSON.stringify({
       token: token,
       user: user,
+      message: message,
+      status: status,
     })
   );
 };
@@ -45,31 +55,24 @@ export const login = (email, password) => {
         "Content-type": "application/json",
       },
     });
-
-    // if (!response.ok) {
-    //   const error = await response.json();
-    //   dispatch(
-    //     notificationActions.showCardNotification({
-    //       type: "error",
-    //       message: error.message,
-    //     })
-    //   );
-    // setTimeout(() => {
-    //   dispatch(notificationActions.hideCardNotification());
-    // }, [5000]);
-    // throw new Error(error.message);
-    // }  
-
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
     const data = await response.json();
-
+    console.log("data");
+    console.log(data);
     // get the expiry time  // to be done later
     await dispatch(
       authActions.authenticate({
         token: data.token,
+        isLoggedIn: true,
         user: data.user,
+        message: data.message,
+        status: data.status,
       })
     );
-    saveDataToStorage(data.user, data.token);
+    saveDataToStorage(data.user, data.token, data.message, data.status);
   };
 };
 
@@ -128,7 +131,7 @@ export const signup = (
 
     if (!response.ok) {
       const error = await response.json();
-      await dispatch();
+      // await dispatch();
       // notificationActions.showCardNotification({
       //   type: "error",
       //   message: error.message,
@@ -182,7 +185,7 @@ export const registerAdmin = (
 
     if (!response.ok) {
       const error = await response.json();
-      await dispatch();
+      // await dispatch();
 
       throw new Error(error.message);
     }

@@ -1,6 +1,6 @@
 import React from "react";
 // import "./About.css";
-import styles from "./About.module.scss";
+import styles from "./AboutPage.module.scss";
 import emma from "../../assets/emma.jpg";
 import brammer from "../../assets/brammer.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";

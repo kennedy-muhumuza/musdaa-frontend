@@ -19,6 +19,9 @@
   box-shadow: var(--shadow-light);
   position: absolute;
 }
+.admin_account_setup {
+  color: var(--color-tertiary);
+}
 fieldset {
   margin-top: 2rem;
   padding: 1rem 1rem;
@@ -38,6 +41,16 @@ form {
   flex-direction: column;
   gap: 0.5rem;
 }
+.input_field {
+  border: 0.1px solid #ccc;
+  border-radius: 4px;
+  transition: all;
+  outline: none;
+  padding: 8px;
+  /* background-color: #f3f4f6; */
+  background-color: var(--color-grey-light-4);
+  font-size: 14px;
+}
 .register-btn {
   padding: 0.5rem 0.5rem;
   background-color: var(--color-secondary-dark);
@@ -54,4 +67,6 @@ form {
 
 .signup__form__input__container {
   display: flex;
+}
+.eye__icon__container {
 }

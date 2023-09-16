@@ -1,45 +1,50 @@
-import React, { Fragment } from "react";
-import styles from "./Modal.module.scss";
-import { RiCloseLine } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import { hideNotificationModal } from "../../../store/actions/notification";
+import React from "react";
+import ReactDom from "react-dom";
+import styles from "./Modal.module.css";
 
-const Modal = ({ isErrorMessage }) => {
-  const notificationMessage = useSelector(
-    (state) => state.notification.notificationMsg
-  );
-  const dispatch = useDispatch();
+// const MODAL_STYLES = {
+//   position: "fixed",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   //   backgroundColor: "#FFF",
+//   padding: "50px",
+//   zIndex: 1000,
+// };
 
-  return (
-    <Fragment>
-      <div
-        className={styles["modal__container"]}
-        onClick={() => dispatch(hideNotificationModal())}
-      />
-      <div className={styles["modal"]}>
-        <button
-          className={styles["close__btn"]}
-          style={{ color: isErrorMessage ? "red" : "green" }}
-          onClick={() => dispatch(hideNotificationModal())}
-        >
-          <RiCloseLine style={{ marginBottom: "-3px" }} />
-        </button>
-
-        <p className={styles["message__container"]}>
-          <span
-            className={styles["empty__span"]}
-            style={{ backgroundColor: isErrorMessage ? "red" : "green" }}
-          ></span>
-          <span
-            className={styles["message"]}
-            style={{ color: isErrorMessage ? "red" : "green" }}
-          >
-            {notificationMessage}
-          </span>
-        </p>
-      </div>
-    </Fragment>
-  );
+// const OVERLAY_STYLES = {
+//   position: "fixed",
+//   top: 0,
+//   left: 0,
+//   right: 0,
+//   bottom: 0,
+//   backgroundColor: "rgba(0, 0, 0, .7)",
+//   zIndex: 1000,
+// };
+const CLOSE_STYLES = {
+  left: 0,
+  backgroundColor: "rgba(250,0,0,0.7)",
+  color: "#fff",
+  padding: "0rem 0.3rem",
+  border: 0,
 };
 
-export default Modal;
+export default function Modal({ open, children, onClose }) {
+  if (!open) return null;
+
+  return ReactDom.createPortal(
+    <>
+      {/* <div style={OVERLAY_STYLES}> */}
+      <div className={styles["modal_overlay"]} />
+      <div className={styles["modal_content"]}>
+        {/* <div style={MODAL_STYLES}> */}
+        <button onClick={onClose} style={CLOSE_STYLES}>
+          {/* <button onClick={onClose} className={styles["close_btn"]}> */}
+          &times;{" "}
+        </button>
+        {children}
+      </div>
+    </>,
+    document.getElementById("portal")
+  );
+}

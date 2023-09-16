@@ -8,10 +8,13 @@ import { FadeLoader } from "react-spinners";
 import { login } from "../../store/actions/auth";
 import { disableEnableButton } from "../../utils/disableEnableButton";
 
-import Modal from "../../components/UI/Modal/Modal";
+import Modal from "../../components/UI/modal/Modal";
 import styles from "./Login.module.scss";
+import Register from "../Register/Register";
 
-const LogIn = () => {
+const LogIn = ({ setInitialRoute }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const userRole = useSelector(
     (state) => state.auth.user && state.auth.user.userRole
   );
@@ -21,18 +24,17 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const showNotificationModal = useSelector(
     (state) => state.notification.value
   );
   const navigateResources = () => {
-    console.log("userRole");
-    console.log(userRole);
-    // if (userRole === "admin") {
-    navigate("/admin-resources", { replace: true });
-    // } else {
-    //   navigate("/resources", { replace: true });
-    // }
+    if (userRole === "admin") {
+      navigate("/admin-resources", { replace: true });
+    } else {
+      navigate("/resources", { replace: true });
+    }
   };
   const [isError, setIsError] = useState(false);
 
@@ -60,6 +62,7 @@ const LogIn = () => {
     event.preventDefault();
     if (!email || !password) return;
     try {
+      setError("");
       setIsLoading(true);
 
       await dispatch(login(email, password));
@@ -68,34 +71,18 @@ const LogIn = () => {
       navigateResources();
     } catch (error) {
       setIsLoading(false);
-
+      setError(error.message);
       setIsError(true);
-      console.log("error msg: " + error.message);
+      // console.log("error msg: " + error.message);
     }
   };
-
+  const changeToRegisterRoute = () => {
+    setInitialRoute(false);
+    setIsOpen(true);
+  };
   return (
     <Fragment>
       <div className={styles["login__container"]}>
-        <header className={styles["login__container__header"]}>
-          <span className={styles["login__container__header--logo"]}>
-            MUSDAA COMMUNITY
-          </span>
-          <nav className={styles["login__container__header--links"]}>
-            <Link
-              to="/"
-              className={styles["login__container__header--links-home"]}
-            >
-              Home
-            </Link>
-            <Link
-              to="/signup"
-              className={styles["login__container__header--links-signup"]}
-            >
-              SignUp
-            </Link>
-          </nav>
-        </header>
         {showNotificationModal && <Modal isErrorMessage={isError} />}
         {isLoading && (
           <div className={styles["fade__loader__container"]}>
@@ -106,6 +93,7 @@ const LogIn = () => {
             <span>Authenticating...</span>
           </div>
         )}
+        {error && <p>{error}</p>}
         <form
           className={styles["login__form"]}
           onSubmit={(event) => handleLogInSubmit(event)}
@@ -113,6 +101,7 @@ const LogIn = () => {
           <p className={styles["login__form__heading"]}>
             Log into your account
           </p>
+
           <div className={styles["login__form__input__container"]}>
             <input
               type="email"
@@ -174,11 +163,15 @@ const LogIn = () => {
               Don't have account{" "}
               <Link
                 // onClick={() => dispatch(hideLogInForm())}
-                to="/signup"
+                onClick={() => changeToRegisterRoute()}
+                to=""
                 className={styles["link"]}
               >
                 SignUp
               </Link>
+              {/* <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                <Register />
+              </Modal> */}
             </p>
           </div>
         </form>

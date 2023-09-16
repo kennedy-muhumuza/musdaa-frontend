@@ -1,57 +1,97 @@
 .register-container {
-  display: flex;
-  justify-content: center;
+  height: 25rem;
+  overflow-y: scroll;
 }
-.register {
-  background-color: var(--color-grey-light-3);
-  box-shadow: var(--shadow-dark);
-  margin-top: 8rem;
-  width: 50%;
-  height: auto;
-  padding: 1rem 1rem;
+.create_account_msg {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-grey-light-1);
 }
-.register-container span {
-  background-color: var(--color-grey-light-2);
-  padding: 1rem 1rem;
-  margin-top: 3rem;
-  border-radius: 0.2rem;
-  border-left: solid var(--color-secondary-dark);
-  box-shadow: var(--shadow-light);
+.input_field {
+  position: relative;
+  border: 0.1px solid #ccc;
+  border-radius: 4px;
+  transition: all;
+  outline: none;
+  padding: 8px;
+  // background-color: #f3f4f6;
+  background-color: var(--color-grey-light-4);
+  font-size: 14px;
+}
+.eye__icon__container_1 {
   position: absolute;
+  top: 19.5rem;
+  right: 15rem;
 }
-fieldset {
-  margin-top: 2rem;
-  padding: 1rem 1rem;
-  display: flex;
-  gap: 3rem;
-}
-input {
-  padding: 0.5rem 0.5rem;
-  width: 15rem;
-  border: 0;
-  border-radius: 0.3rem;
-  background-color: #e7f5ff;
-  /* background-color: var(--color-secondary-dark); */
-}
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.eye__icon__container_2 {
+  // position: absolute;
+  // top: 18.5rem;
+  // right: 7.5rem;
 }
 .register-btn {
-  padding: 0.5rem 0.5rem;
-  background-color: var(--color-secondary-dark);
-  border: 0;
-  color: var(--color-grey-light-3);
-  border-radius: 0.2rem;
-  transition: 0.2s;
+  padding: 0.5rem;
+  border-radius: 0.1rem;
+  background-color: var(--color-secondary);
+  color: var(--color-grey-light-4);
 }
 .register-btn:hover {
-  margin-top: 0.2rem;
-  padding: 0.6rem 0.6rem;
-  background-color: var(--color-secondary);
+  background-color: var(--color-secondary-dark);
+  transition: 0.5s;
 }
+// .register-container {
+//   display: flex;
+//   justify-content: center;
+// }
+// .register {
+//   background-color: var(--color-grey-light-3);
+//   box-shadow: var(--shadow-dark);
+//   margin-top: 8rem;
+//   width: 50%;
+//   height: auto;
+//   padding: 1rem 1rem;
+// }
+// .register-container span {
+//   background-color: var(--color-grey-light-2);
+//   padding: 1rem 1rem;
+//   margin-top: 3rem;
+//   border-radius: 0.2rem;
+//   border-left: solid var(--color-secondary-dark);
+//   box-shadow: var(--shadow-light);
+//   position: absolute;
+// }
+// fieldset {
+//   margin-top: 2rem;
+//   padding: 1rem 1rem;
+//   display: flex;
+//   gap: 3rem;
+// }
+// input {
+//   padding: 0.5rem 0.5rem;
+//   width: 15rem;
+//   border: 0;
+//   border-radius: 0.3rem;
+//   background-color: #e7f5ff;
+//   /* background-color: var(--color-secondary-dark); */
+// }
+// form {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+// }
+// .register-btn {
+//   padding: 0.5rem 0.5rem;
+//   background-color: var(--color-secondary-dark);
+//   border: 0;
+//   color: var(--color-grey-light-3);
+//   border-radius: 0.2rem;
+//   transition: 0.2s;
+// }
+// .register-btn:hover {
+//   margin-top: 0.2rem;
+//   padding: 0.6rem 0.6rem;
+//   background-color: var(--color-secondary);
+// }
 
-.signup__form__input__container {
-  display: flex;
-}
+// .signup__form__input__container {
+//   display: flex;
+// }

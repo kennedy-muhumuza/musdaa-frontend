@@ -4,6 +4,8 @@ const theInitialState = {
   token: null,
   isLoggedIn: false,
   user: {},
+  message: "",
+  status: "",
 };
 export const authSlice = createSlice({
   name: "auth",
@@ -12,14 +14,18 @@ export const authSlice = createSlice({
     authenticate(state, action) {
       state.token = action.payload.token;
       state.isLoggedIn = !!state.token;
+      // state.isLoggedIn = action.payload.isLoggedIn;
       state.user = action.payload.user;
+      state.status = action.payload.status;
 
       return;
     },
     logout(state) {
-      state.token = null; 
+      state.token = null;
       state.isLoggedIn = false;
       state.user = null;
+      state.message = "";
+      state.status = "";
     },
   },
 });

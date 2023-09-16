@@ -8,14 +8,14 @@ import { signup } from "../../store/actions/auth";
 import { IconContext } from "react-icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { disableEnableButton } from "../../utils/disableEnableButton";
-import Modal from "../../components/UI/Modal/Modal";
+import Modal from "../../components/UI/modal/Modal";
 import { FadeLoader } from "react-spinners";
 
 import Select from "react-select";
 import countryList from "react-select-country-list";
 
 const Register = () => {
-  const options = useMemo(() => countryList().getData(), []);
+  // const options = useMemo(() => countryList().getData(), []);
   // let navigate = useNavigate();
   let navigate = useNavigate();
 
@@ -171,153 +171,158 @@ const Register = () => {
           </div>
         )}
         <div className={styles["register"]}>
-          <h4>Create an account here</h4>
-          <fieldset>
-            <legend>Account setup</legend>
+          <h4 className={styles["create_account_msg"]}>
+            Create an account here
+          </h4>
 
-            <form
-              onSubmit={(event) => {
-                validPasswordOnSubmit(event);
-              }}
-            >
-              <div>
-                <label>First Name: &nbsp;</label>
-                <input
-                  // ref={firstNameRef}
-                  value={firstName}
-                  type="text"
-                  placeholder="First Name"
-                  onChange={(event) => {
-                    handleFirstNameChange(event);
+          <form
+            onSubmit={(event) => {
+              validPasswordOnSubmit(event);
+            }}
+          >
+            <div>
+              <label>First Name: &nbsp;</label>
+              <input
+                // ref={firstNameRef}
+                value={firstName}
+                type="text"
+                placeholder="First Name"
+                className={styles["input_field"]}
+                onChange={(event) => {
+                  handleFirstNameChange(event);
+                }}
+                required
+              />
+            </div>
+            <div>
+              <label>Last Name: &nbsp;</label>
+              <input
+                // ref={lastNameRef}
+                value={lastName}
+                type="text"
+                className={styles["input_field"]}
+                placeholder="Last Name"
+                onChange={(event) => {
+                  handleLastNameChange(event);
+                }}
+                required
+              />
+            </div>
+            <div>
+              <label>Email: &nbsp;</label>
+              <input
+                // ref={emailRef}
+                value={email}
+                type="email"
+                placeholder="Email"
+                className={styles["input_field"]}
+                onChange={(event) => {
+                  handleEmailChange(event);
+                }}
+                required
+              />
+            </div>
+            {isPasswordError && (
+              // TODO: display this message in the modal
+              <span className={styles["password-error"]}>
+                {passwordValidationMsg}
+              </span>
+            )}
+
+            <div className={styles["signup__form__input__container"]}>
+              <label>Password: &nbsp;</label>
+              <input
+                // ref={passwordRef}
+                value={password}
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className={styles["input_field"]}
+                placeholder="Password"
+                onChange={(event) => {
+                  handlePasswordChange(event);
+                }}
+                required
+              />
+              {showPassword && (
+                <IconContext.Provider
+                  value={{
+                    color: "black",
+                    className: styles["eye__icon__container"],
                   }}
-                  required
-                />
-              </div>
-              <div>
-                <label>Last Name: &nbsp;</label>
-                <input
-                  // ref={lastNameRef}
-                  value={lastName}
-                  type="text"
-                  placeholder="Last Name"
-                  onChange={(event) => {
-                    handleLastNameChange(event);
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <label>Email: &nbsp;</label>
-                <input
-                  // ref={emailRef}
-                  value={email}
-                  type="email"
-                  placeholder="Email"
-                  onChange={(event) => {
-                    handleEmailChange(event);
-                  }}
-                  required
-                />
-              </div>
-              {isPasswordError && (
-                // TODO: display this message in the modal
-                <span className={styles["password-error"]}>
-                  {passwordValidationMsg}
-                </span>
+                >
+                  <div onClick={() => showHidePassword()}>
+                    <AiOutlineEyeInvisible />
+                  </div>
+                </IconContext.Provider>
               )}
-
-              <div className={styles["signup__form__input__container"]}>
-                <label>Password: &nbsp;</label>
-                <input
-                  // ref={passwordRef}
-                  value={password}
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  placeholder="Password"
-                  onChange={(event) => {
-                    handlePasswordChange(event);
+              {!showPassword && (
+                <IconContext.Provider
+                  value={{
+                    color: "black",
+                    className: styles["eye__icon__container"],
                   }}
-                  required
-                />
-                {showPassword && (
-                  <IconContext.Provider
-                    value={{
-                      color: "black",
-                      className: styles["eye__icon__container"],
-                    }}
-                  >
-                    <div onClick={() => showHidePassword()}>
-                      <AiOutlineEyeInvisible />
-                    </div>
-                  </IconContext.Provider>
-                )}
-                {!showPassword && (
-                  <IconContext.Provider
-                    value={{
-                      color: "black",
-                      className: styles["eye__icon__container"],
-                    }}
-                  >
-                    <div onClick={() => showHidePassword()}>
-                      <AiOutlineEye />
-                    </div>
-                  </IconContext.Provider>
-                )}
-              </div>
+                >
+                  <div onClick={() => showHidePassword()}>
+                    <AiOutlineEye />
+                  </div>
+                </IconContext.Provider>
+              )}
+            </div>
 
-              <div className={styles["signup__form__input__container"]}>
-                <label>Confirm password: &nbsp;</label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Confirm Password"
-                  className={styles["signup__form__input"]}
-                  id="confirm-password"
-                  value={confirmPassword}
-                  onChange={(event) => {
-                    handleConfirmPasswordChange(event);
+            <div className={styles["signup__form__input__container"]}>
+              <label>Confirm password: &nbsp;</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                className={styles["input_field"]}
+                id="confirm-password"
+                value={confirmPassword}
+                onChange={(event) => {
+                  handleConfirmPasswordChange(event);
+                }}
+                required
+              />
+              {showPassword && (
+                <IconContext.Provider
+                  value={{
+                    color: "black",
+                    className: styles["eye__icon__container_1"],
                   }}
-                  required
-                />
-                {showPassword && (
-                  <IconContext.Provider
-                    value={{
-                      color: "black",
-                      className: styles["eye__icon__container"],
-                    }}
-                  >
-                    <div onClick={() => showHidePassword()}>
-                      <AiOutlineEyeInvisible />
-                    </div>
-                  </IconContext.Provider>
-                )}
-                {!showPassword && (
-                  <IconContext.Provider
-                    value={{
-                      color: "black",
-                      className: styles["eye__icon__container"],
-                    }}
-                  >
-                    <div onClick={() => showHidePassword()}>
-                      <AiOutlineEye />
-                    </div>
-                  </IconContext.Provider>
-                )}
-              </div>
+                >
+                  <div onClick={() => showHidePassword()}>
+                    <AiOutlineEyeInvisible />
+                  </div>
+                </IconContext.Provider>
+              )}
+              {!showPassword && (
+                <IconContext.Provider
+                  value={{
+                    color: "black",
+                    className: styles["eye__icon__container_2"],
+                  }}
+                >
+                  <div onClick={() => showHidePassword()}>
+                    <AiOutlineEye />
+                  </div>
+                </IconContext.Provider>
+              )}
+            </div>
 
-              <div>
-                <label>Country: &nbsp;</label>
-                <input
-                  // ref={countryRef}
-                  value={country}
-                  type="text"
-                  placeholder="Home Country"
-                  onChange={(event) => {
-                    handleSelectedCountryChange(event);
-                  }}
-                  required
-                />
-              </div>
-              {/* <div className={styles["signup__form__input__container"]}>
+            <div>
+              <label>Country: &nbsp;</label>
+              <input
+                // ref={countryRef}
+                value={country}
+                type="text"
+                className={styles["input_field"]}
+                placeholder="Home Country"
+                onChange={(event) => {
+                  handleSelectedCountryChange(event);
+                }}
+                required
+              />
+            </div>
+            {/* <div className={styles["signup__form__input__container"]}>
                 <Select
                   options={options}
                   value={countrySelected}
@@ -329,31 +334,31 @@ const Register = () => {
                 />
               </div> */}
 
-              <div>
-                <label>Telephone Number: &nbsp;</label>
-                <input
-                  // ref={numberRef}
-                  value={telNumber}
-                  type="text"
-                  placeholder="Telephone Number"
-                  onChange={(event) => {
-                    handleTelNumberChange(event);
-                  }}
-                  required
-                />
-              </div>
+            <div>
+              <label>Telephone Number: &nbsp;</label>
+              <input
+                // ref={numberRef}
+                value={telNumber}
+                type="text"
+                className={styles["input_field"]}
+                placeholder="Telephone Number"
+                onChange={(event) => {
+                  handleTelNumberChange(event);
+                }}
+                required
+              />
+            </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className={styles["register-btn"]}
-                  id="signup-button"
-                >
-                  Register
-                </button>
-              </div>
-            </form>
-          </fieldset>
+            <div>
+              <button
+                type="submit"
+                className={styles["register-btn"]}
+                id="signup-button"
+              >
+                Register
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </Fragment>

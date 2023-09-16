@@ -15,7 +15,7 @@ const Header = ({ title }) => {
           <LoggedInAs />
         </div>
       </header>
-    </Fragment>
+    </Fragment> 
   );
 };
 

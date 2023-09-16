@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  useEffect,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
@@ -17,9 +11,14 @@ import AdminDashBoard from "./pages/AdminDashBoard/AdminDashBoard";
 import { authenticate } from "./store/actions/auth";
 import RegisterAdmin from "./pages/RegisterAdmin/RegisterAdmin";
 import AdminHomePage from "./pages/AdminPage/AdminPage";
-
+import SliderComponent from "./components/UI/slider/SliderComponent";
 import "./App.scss";
-import About from "./pages/about/About";
+import About from "./pages/aboutPage/AboutPage";
+import AdminTokens from "./pages/adminTokens/AdminTokens";
+import Loggedhomepage from "./components/UI/loggedHomePage/LoggedHomePage";
+import { Form } from "./pages/form/Form";
+import AdminPage from "./pages/AdminPage/AdminPage";
+import { Links } from "./pages/Home/Links";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +27,7 @@ function App() {
   const userRole = useSelector(
     (state) => state.auth.user && state.auth.user.userRole
   );
-
+  console.log(isLoggedIn);
   const userDataFromStorage = JSON.parse(localStorage.getItem("userData"));
   const navigationTypeReload =
     performance.getEntriesByType("navigation")[0].type === "reload";
@@ -43,11 +42,21 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* ---------------------ACCESSIBLE ROUTES WHEN NOT LOGGED IN------------------------------- */}
+
         {!isLoggedIn && (
           <Routes>
             <Fragment>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
+              {/* -------------------casual links--------------------------- */}
+              <Route path="/logged-in" element={<Loggedhomepage />} />
+              <Route path="/admin-tokens" element={<AdminTokens />} />
+              <Route path="/form" element={<Form />} />
+              <Route path="/admin-page" element={<AdminPage />} />
+              <Route path="/links" element={<Links />} />
+
+              {/* -------------------casual links--------------------------- */}
+
               <Route
                 path="register"
                 element={
@@ -56,8 +65,10 @@ function App() {
                   </div>
                 }
               />
+              <Route path="slider" element={<SliderComponent />} />
               <Route path="login" element={<Login />} />
-              <Route path="about" element={<About />} />
+              <Route path="about" element={<div>About Page</div>} />
+
               <Route
                 path="signup"
                 element={<Navigate to="/register" replace />}
@@ -73,16 +84,25 @@ function App() {
         {isLoggedIn && (
           <Routes>
             <Fragment>
-              <Route path="/resources" element={<LoggedUserPage />} />
-              <Route path="*" element={<Navigate to="/resources" replace />} />
+              {/* <Route path="/admin-resources" element={<AdminHomePage />} /> */}
 
               {userRole === "admin" && (
                 <>
-                  <Route path="/" element={<AdminHomePage />} />
+                  {/* <Route index element={<AdminHomePage />} /> */}
                   <Route path="/admin-resources" element={<AdminHomePage />} />
                   <Route
                     path="*"
                     element={<Navigate to="/admin-resources" replace />}
+                  />
+                </>
+              )}
+
+              {userRole === "user" && (
+                <>
+                  <Route path="/resources" element={<LoggedUserPage />} />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/resources" replace />}
                   />
                 </>
               )}

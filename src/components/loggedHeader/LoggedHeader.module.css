@@ -1,0 +1,13 @@
+.header-container {
+  justify-content: center;
+}
+.logo-link-container {
+  display: flex;
+  gap: 5rem;
+  margin-top: 2rem;
+  margin-left: 5rem;
+}
+.musdaa_logo {
+  width: 10rem;
+  height: auto;
+}

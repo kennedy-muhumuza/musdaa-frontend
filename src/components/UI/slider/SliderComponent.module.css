@@ -1,0 +1,57 @@
+.container {
+  width: 50%;
+}
+
+.main_div {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imageContainer {
+  display: flex;
+  width: 35rem;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.musdaa_image {
+  width: 30rem;
+  height: auto;
+}
+.prevIcon {
+  background-color: var(--color-grey-light-2);
+  border-radius: 50%;
+  margin: 4rem;
+}
+.nextIcon {
+  background-color: var(--color-grey-light-2);
+  border-radius: 50%;
+  margin: 4rem;
+}
+.learn_more {
+  background-color: var(--color-secondary);
+  border-radius: 0.3rem;
+  color: #fff;
+  padding: 0.3rem;
+  position: absolute;
+  margin-top: 14rem;
+}
+.imag_nav_icon_container {
+}
+.prev_arrow {
+  width: 0.5rem;
+  rotate: 180deg;
+  height: auto;
+  margin: 5rem;
+}
+.next_arrow {
+  width: 0.5rem;
+  height: auto;
+  margin: 5rem;
+}

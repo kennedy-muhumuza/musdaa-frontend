@@ -1,0 +1,119 @@
+.link_container {
+  text-decoration: none;
+  background-color: #ffd43b;
+  padding: 2rem 1rem;
+  margin-right: 4rem;
+  width: fit-content;
+}
+.link_list {
+  width: fit-content;
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  gap: 2rem;
+}
+.link_item {
+  text-decoration: none;
+}
+.home_link_item {
+  color: var(--color-grey-dark-2);
+  text-decoration: none;
+}
+.search_btn {
+  padding: 0.5rem;
+}
+
+/* .header-container {
+  background-color: var(--color-primary);
+
+  height: var(--home-page-container-height);
+  justify-content: center;
+}
+.logo-link-container {
+  display: flex;
+  gap: 5rem;
+  padding-top: 2.5rem;
+  padding-left: 15rem;
+} */
+
+.content-slider-container {
+}
+.empty-div {
+  width: 20%;
+  height: 5rem;
+}
+.slide-content-container {
+  display: flex;
+}
+.swiper-slide-container {
+  position: relative;
+  margin-top: 4rem;
+  background-color: var(--color-grey-light-4);
+  padding-left: 5rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+.home-link {
+  background-color: var(--color-grey-dark-4);
+
+  color: var(--color-grey-light-3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+}
+.link-btn-home {
+  text-decoration: none;
+  color: var(--color-grey-light-3);
+}
+.home-link:hover {
+  background-color: var(--color-grey-dark-2);
+  color: var(--color-grey-light-3);
+}
+.about-link {
+  background-color: var(--color-grey-light-3);
+  height: fit-content;
+  padding: 0.5rem 1.1rem;
+}
+.input_field {
+  border: 0.1px solid #ccc;
+  border-radius: 4px;
+  transition: all;
+  outline: none;
+  padding: 8px;
+  background-color: var(--color-grey-light-4);
+  font-size: 14px;
+}
+.link-btn {
+  background-color: var(--color-grey-light-3);
+
+  height: 100%;
+  text-decoration: none;
+  color: var(--color-grey-dark-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+}
+.link-btn:hover {
+  background-color: var(--color-primary-light);
+  color: #fff;
+  transition: 0.01s;
+}
+.header-link-container {
+  background-color: red;
+  display: flex;
+  gap: 0;
+}
+.header-link-container {
+}
+.search_btn {
+  padding: 0.5rem;
+  border: 2px solid var(--color-secondary-dark);
+  /* border: 2px solid purple; */
+  border-radius: 0.4rem;
+}

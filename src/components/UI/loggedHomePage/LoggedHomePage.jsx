@@ -3,43 +3,47 @@ import axios from "axios";
 import { url } from "../../../constants/url";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import "./LoggedHomePage.css";
+import styles from "./LoggedHomePage.module.css";
 import { IconContext } from "react-icons";
 
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import LogOut from "../logout/Logout";
+// import { GeneralHeader } from "../../generalHeader/GeneralHeader";
+import { LoggedHeader } from "../../loggedHeader/LoggedHeader";
+import SliderComponent from "../slider/SliderComponent";
+import { About } from "../about/About";
+import { Materials } from "../materials/Materials";
+import { Logos } from "../../logos/Logos";
+import { Footer } from "../footer/Footer";
 
-const Loggedhomepage = () => {
+const LoggedHomepage = () => {
   const user = useSelector((state) => state.auth.user);
 
-  console.log("user");
+  console.log("user in loggedHomePage");
   console.log(user);
 
   return (
     <Fragment>
       <div className="logged-home-page-container">
-        <div className="welcome-msg">
-          <p>{/* {`Welcome dear ${{firstName} {lastName} }`} */}</p>
-          <span>
-            {user.firstName} {user.lastName}
-            {/* {user?.first_name} {user?.last_name} */}
-          </span>
-        </div>
-        <div className="access-msg">
-          <p>
-            You will access all the MUSDAA resources on this page once it is
-            fully set up
-          </p>{" "}
-          <br />
-          <p>Thank you </p>
-        </div>
-
         <div className="logout">
           <LogOut />
+        </div>
+        <div className={styles["home-page-container"]}>
+          {/* <GeneralHeader /> */}
+          <LoggedHeader />
+          <SliderComponent />
+          <div className={styles["body_container"]}>
+            <main>
+              <About />
+              <Materials />
+            </main>
+            <Logos />
+          </div>
+          <Footer />
         </div>
       </div>
     </Fragment>
   );
 };
 
-export default Loggedhomepage;
+export default LoggedHomepage;
