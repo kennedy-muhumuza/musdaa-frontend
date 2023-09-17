@@ -8,7 +8,7 @@ import { FadeLoader } from "react-spinners";
 import { login } from "../../store/actions/auth";
 import { disableEnableButton } from "../../utils/disableEnableButton";
 
-import Modal from "../../components/UI/modal/Modal";
+// import Modal from "../../components/UI/modal/Modal";
 import styles from "./Login.module.scss";
 import Register from "../Register/Register";
 
@@ -83,7 +83,7 @@ const LogIn = ({ setInitialRoute }) => {
   return (
     <Fragment>
       <div className={styles["login__container"]}>
-        {showNotificationModal && <Modal isErrorMessage={isError} />}
+        {/* {showNotificationModal && <Modal isErrorMessage={isError} />} */}
         {isLoading && (
           <div className={styles["fade__loader__container"]}>
             <FadeLoader
