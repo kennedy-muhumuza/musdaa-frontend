@@ -35,7 +35,7 @@ import statisticsChartsData from "../../data/statistics-charts-data";
 import projectsTableData from "../../data/projects-table-data";
 import ordersOverviewData from "../../data/orders-overview-data";
 import { AdminHeader } from "../../components/adminHeader/AdminHeader";
-import { Footer } from "src/components/UI/footer/Footer";
+import { Footer } from "../../components/UI/footer/Footer";
 
 export function AdminPage() {
   return (
