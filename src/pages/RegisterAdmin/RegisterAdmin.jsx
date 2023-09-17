@@ -8,7 +8,7 @@ import { registerAdmin } from "../../store/actions/auth";
 import { IconContext } from "react-icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { disableEnableButton } from "../../utils/disableEnableButton";
-import Modal from "../../components/UI/modal/Modal";
+// import Modal from "../../components/UI/modal/Modal";
 import { FadeLoader } from "react-spinners";
 
 import Select from "react-select";
@@ -157,7 +157,7 @@ const Register = () => {
             You are now registered successfully
           </span>
         )}
-        {showNotificationModal && <Modal isErrorMessage={isError} />}
+        {/* {showNotificationModal && <Modal isErrorMessage={isError} />} */}
         {isLoading && (
           <div className={styles["fade__loader__container"]}>
             <FadeLoader
