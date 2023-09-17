@@ -13,7 +13,7 @@ let baseUrl;
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   baseUrl = "http://localhost:5000";
 } else {
-  baseUrl = "https://letschat-backend.onrender.com";
+  baseUrl = "https://musdaa-backend.onrender.com";
 }
 
 export { baseUrl };
