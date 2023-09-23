@@ -78,7 +78,7 @@ const LogIn = ({ setInitialRoute }) => {
   };
   const changeToRegisterRoute = () => {
     setInitialRoute(false);
-    setIsOpen(true);
+    // setIsOpen(true);
   };
   return (
     <Fragment>
